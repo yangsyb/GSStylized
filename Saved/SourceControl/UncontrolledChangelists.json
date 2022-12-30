@@ -5,8 +5,7 @@
 			"guid": "00000000000000000000000000000000",
 			"description": "Default Uncontrolled Changelist",
 			"files": [
-				"D:/Backup/Documents/Unreal Projects/GSStylized/Content/NewBlueprint.uasset",
-				"D:/Backup/Documents/Unreal Projects/GSStylized/Plugins/StylizedGenerator/Content/BP_StylizedTree.uasset"
+				"C:/GSStylized/GSStylized/Plugins/StylizedGenerator/Content/BP_StylizedTree.uasset"
 			]
 		}
 	]

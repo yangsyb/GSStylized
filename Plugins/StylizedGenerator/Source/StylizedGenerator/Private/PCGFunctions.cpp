@@ -26,3 +26,21 @@ TArray<FVector> UPCGFunctions::GenerateBranchSplinePoints(FVector StartLocation,
 
 	return RetBranchPoints;
 }
+
+int UPCGFunctions::FindNearest(FVector Location, TArray<FVector> LocationList)
+{
+	double Distance = INT_MAX;
+	for(int Index = 0; Index<LocationList.Num(); Index++)
+	{
+		double CurrentDistance = FMath::Square(LocationList[Index].X - Location.X) + FMath::Square(LocationList[Index].Y - Location.Y) + FMath::Square(LocationList[Index].Z - Location.Z);
+		if(CurrentDistance < Distance)
+		{
+			Distance = CurrentDistance;
+		}
+		else
+		{
+			return Index - 1;
+		}
+	}
+	return LocationList.Num();
+}

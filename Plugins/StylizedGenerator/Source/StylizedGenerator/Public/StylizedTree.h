@@ -30,10 +30,16 @@ protected:
 	int TrunkTessellation = 20;
 
 	UPROPERTY(EditAnywhere, BluePrintReadWrite)
+	float TreeTopScale = 0.3;
+
+	UPROPERTY(EditAnywhere, BluePrintReadWrite)
 	int BranchSeed = 558;
 
 	UPROPERTY(EditAnywhere, BluePrintReadWrite)
-	int NumBranches = 4;
+	int SecondBranchNum = 4;
+
+	UPROPERTY(EditAnywhere, BluePrintReadWrite)
+	int ThirdBranchNum = 5;
 
 	TArray<FVector> CachedTreePointsLocation;
 	TArray<FVector2D> CachedTrunkPointsLocation;
@@ -42,6 +48,7 @@ protected:
 
 
 	void PostEditMove(bool bFinished) override;
+	void PostEditChangeProperty(FPropertyChangedEvent& PropertyChangedEvent) override;
 	
 private:
 	virtual void RebuildStylizedMesh(UDynamicMesh* TargetMesh) override;
