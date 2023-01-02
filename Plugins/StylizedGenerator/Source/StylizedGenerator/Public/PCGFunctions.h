@@ -18,5 +18,8 @@ public:
 	static TArray<FVector> GenerateBranchSplinePoints(FVector StartLocation, FVector StartNormal, FVector UpVector, double BranchLength, int TessellationNum, double NormalWeightMin);
 
 	UFUNCTION(BlueprintCallable, Category = Generation)
-	static int FindNearest(FVector Location, TArray<FVector> LocationList);
+	static int FindNearest(FVector Location, TArray<FVector>& LocationList);
+
+	UFUNCTION(BlueprintCallable, Category = Generation)
+	static int ParallelFindNearest(FVector Location, TArray<FVector>& LocationList);
 };

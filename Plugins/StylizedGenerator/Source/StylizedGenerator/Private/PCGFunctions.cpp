@@ -27,13 +27,39 @@ TArray<FVector> UPCGFunctions::GenerateBranchSplinePoints(FVector StartLocation,
 	return RetBranchPoints;
 }
 
-int UPCGFunctions::FindNearest(FVector Location, TArray<FVector> LocationList)
+int UPCGFunctions::FindNearest(FVector Location, TArray<FVector>& LocationList)
 {
 	double Distance = INT_MAX;
-	for(int Index = 0; Index<LocationList.Num(); Index++)
+	for (int Index = 0; Index < LocationList.Num(); Index++)
 	{
 		double CurrentDistance = FMath::Square(LocationList[Index].X - Location.X) + FMath::Square(LocationList[Index].Y - Location.Y) + FMath::Square(LocationList[Index].Z - Location.Z);
-		if(CurrentDistance < Distance)
+		if (CurrentDistance < Distance)
+		{
+			Distance = CurrentDistance;
+		}
+		else
+		{
+			return Index - 1;
+		}
+	}
+	return LocationList.Num();
+}
+
+int UPCGFunctions::ParallelFindNearest(FVector Location, TArray<FVector>& LocationList)
+{
+	TArray<double> DistanceList;
+	DistanceList.Reserve(LocationList.Num());
+	ParallelFor(LocationList.Num(), [&](int32 Index)
+		{
+			DistanceList[Index] = FMath::Square(LocationList[Index].X - Location.X) + FMath::Square(LocationList[Index].Y - Location.Y) + FMath::Square(LocationList[Index].Z - Location.Z);
+		}
+	);
+
+	double Distance = INT_MAX;
+	for (int Index = 0; Index < DistanceList.Num(); Index++)
+	{
+		double CurrentDistance = DistanceList[Index];
+		if (CurrentDistance < Distance)
 		{
 			Distance = CurrentDistance;
 		}
