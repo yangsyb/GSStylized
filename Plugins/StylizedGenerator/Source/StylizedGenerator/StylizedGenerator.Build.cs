@@ -43,6 +43,7 @@ public class StylizedGenerator : ModuleRules
 				"DynamicMesh",
                 "GeometryCore",
                 "GeometryFramework",
+                "GeometryCore",
 
 				// ... add private dependencies that you statically link with here ...	
 			}

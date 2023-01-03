@@ -7,6 +7,7 @@
 #include "Components/SplineComponent.h"
 #include "GameFramework/Actor.h"
 #include <GeometryScript/GeometryScriptTypes.h>
+#include "TreeBranch.h"
 #include "StylizedTree.generated.h"
 
 /**
@@ -44,6 +45,7 @@ protected:
 	TArray<FVector> CachedTreePointsLocation;
 	TArray<FVector2D> CachedTrunkPointsLocation;
 
+	TObjectPtr<TreeBranch> MainBranch;
 	FGeometryScriptDynamicMeshBVH DynamicMeshBVH;
 
 
